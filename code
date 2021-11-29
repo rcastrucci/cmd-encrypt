@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+import sys
+from jsoncrypt import *
+
+if "display" in sys.argv and len(sys.argv) > 2:
+    sys.argv.remove("display")
+    filename = sys.argv[1]
+    print(Encrypt.jsonfile(filename))
+elif len(sys.argv) >= 2:
+    if "-p" in sys.argv and len(sys.argv) >= 4:
+        sys.argv.remove("-p")
+        filename = sys.argv[1]
+        password = sys.argv[2]
+        if Encrypt.jsonfile(filename, save_file=True, password=password):
+            print("Successfully encrypted with password")
+        else:
+            print("Failed to encrypt file {}".format(filename))
+    else:
+        filename = sys.argv[1]
+        if Encrypt.jsonfile(filename, save_file=True):
+            print("Successfully encrypt")
+        else:
+            print("Failed to encrypt file {}".format(filename))
