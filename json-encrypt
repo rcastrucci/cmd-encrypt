@@ -7,6 +7,13 @@ if "display" in sys.argv and len(sys.argv) > 2:
     sys.argv.remove("display")
     filename = sys.argv[1]
     print(Encrypt.jsonfile(filename))
+elif "help" in sys.argv or "-h" in sys.argv or "-help" in sys.argv:
+    print("Json encryption with password")
+    print("Usage:")
+    print("display filename_path      -> To display the encryption of a file without changing the file")
+    print("help | -h | -help          -> To see these options")
+    print("-p filename_path passowrd  -> To encrypt a file with a password")
+    print("json-encrypt filename_path -> To encrypt a file without a password") 
 elif len(sys.argv) >= 2:
     if "-p" in sys.argv and len(sys.argv) >= 4:
         sys.argv.remove("-p")

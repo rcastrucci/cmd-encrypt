@@ -1,57 +1,39 @@
 #!/usr/bin/env python3
 
 import sys
-
 from jsoncrypt import *
 
 if "display" in sys.argv and len(sys.argv) > 2:
-
     if "-p" in sys.argv and len(sys.argv) >= 5:
-
         sys.argv.remove("display")
-
         sys.argv.remove("-p")
-
         filename = sys.argv[1]
-
         password = sys.argv[2]
-
         print(Decrypt.jsonfile(filename, password=password, output="string"))
-
     else:
-
         sys.argv.remove("display")
-
         filename = sys.argv[1]
-
         print(Decrypt.jsonfile(filename, output="string"))
-
+elif "help" in sys.argv or "-h" in sys.argv or "-help" in sys.argv:
+    print("Json decryption")
+    print("Usage:")
+    print("display filename_path        -> To display the content of a file without password")
+    print("display -p filename password -> To display the content of a encrypted file with password")
+    print("help | -h | -help            -> To see these options")
+    print("-p filename_path passowrd    -> To decrypt a file with a password")
+    print("json-decrypt filename_path   -> To decrypt a file without a password")
 elif len(sys.argv) >= 2:
-
     if "-p" in sys.argv and len(sys.argv) >= 4:
-
         sys.argv.remove("-p")
-
         filename = sys.argv[1]
-
         password = sys.argv[2]
-
         if Decrypt.jsonfile(filename, save_file=True, password=password):
-
             print("Successfully decrypted with password")
-
         else:
-
             print("Failed to decrypt file {}".format(filename))
-
     else:
-
         filename = sys.argv[1]
-
         if Decrypt.jsonfile(filename, save_file=True):
-
             print("Successfully decrypted")
-
         else:
-
             print("Failed to decrypt file {}".format(filename))
